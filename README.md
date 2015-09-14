@@ -13,7 +13,8 @@ hashmap implementations. The following implementations are available:
     1      ByteString custom               reads words.count; only lowercase
     2      ByteString Data.HashMap.Strict  reads words.count; only lowercase
     3      ByteString Data.HashMap.Strict  reads big.lower; only lowercase
-    4      Text       Data.HashMap.Struct  reads from big.txt; handles lowercase
+    4      Text       Data.HashMap.Strict  reads from big.txt; handles lowercase
+    5      LazyText   Data.HashMap.Strict  reads from big.txt; handles lowercase
 
 Implementations 1-3 assume the training data consist only of lowercase characters.
 
