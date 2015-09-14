@@ -1,29 +1,29 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module SpellText
+module Spell.LazyText
 where
 
-import qualified Data.Text as T
-import Data.Text (Text)
+import qualified Data.Text.Lazy as TL
+import Data.Text.Lazy (Text)
 import Data.Monoid
 import Data.List.Ordered (nubSort)
 import Data.Ord
 import Data.List
 import Control.Monad
 
-type Dict = ( Text -> Bool, Text -> Int )
+type Dict = ( TL.Text -> Bool, TL.Text -> Int )
 
-singles :: [ Text ]
-singles = map T.singleton ['a'..'z']
+singles :: [ TL.Text ]
+singles = map TL.singleton ['a'..'z']
 
-edits :: Text -> [ Text ]
+edits :: TL.Text -> [ TL.Text ]
 edits w = deletes <> nubSort (transposes <> replaces) <> inserts
   where
-    splits     = zip (T.inits w) (T.tails w)
-    deletes    = [ a <> (T.drop 1 b) | (a,b) <- splits, T.length b > 0 ]
-    transposes = [ a <> c <> (T.drop 2 b) | (a,b) <- splits, T.length b > 1,
-                   let c = T.pack [ T.index b 1, T.index b 0 ] ]
-    replaces   = [ a <> c <> (T.drop 1 b) | (a,b) <- splits, T.length b > 1,
+    splits     = zip (TL.inits w) (TL.tails w)
+    deletes    = [ a <> (TL.drop 1 b) | (a,b) <- splits, TL.length b > 0 ]
+    transposes = [ a <> c <> (TL.drop 2 b) | (a,b) <- splits, TL.length b > 1,
+                   let c = TL.pack [ TL.index b 1, TL.index b 0 ] ]
+    replaces   = [ a <> c <> (TL.drop 1 b) | (a,b) <- splits, TL.length b > 1,
                     c <- singles ]
     inserts    = [ a <> c <> b | (a,b) <- splits, c <- singles ]
 
@@ -34,7 +34,7 @@ orElse as _  = as
 -- | Correct a word. 'isMember' and 'frequency' are functions to
 --   determine if a word is in the dictionary and to lookup its
 --   frequency, respectively.
-correct :: Dict -> Text -> Text 
+correct :: Dict -> TL.Text -> TL.Text
 correct (isMember,frequency) w0 = 
   let ed0 = [ w0 ]
       ed1 = edits w0
@@ -53,6 +53,7 @@ foo n w0 | n > 0 = w0 <> ""
          | otherwise = w0
 
 -- test correcting a word multiple times (for timing)
+testRep :: Dict -> Int -> TL.Text -> IO ()
 testRep dictfns n w0 = do
   replicateM_ n $ do
     print $ correct dictfns (foo n w0)

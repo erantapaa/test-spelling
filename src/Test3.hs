@@ -2,7 +2,6 @@ module Test3
 where
 
 import qualified Data.HashMap.Strict as H
-import qualified Spell as Spell
 import qualified Data.ByteString.Char8 as BS
 import Data.List
 
@@ -22,5 +21,5 @@ readDict = do
                 in  H.insert w (c+1) h
       member = \k -> H.member k h
       frequency = \k -> H.lookupDefault 0 k h
-  return (member, frequency)
+  return (member, frequency, BS.pack)
 

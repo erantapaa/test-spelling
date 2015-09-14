@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Spell
+module Spell.ByteString
 where
 
 import qualified Data.ByteString.Char8 as BS

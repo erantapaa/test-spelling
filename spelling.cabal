@@ -15,8 +15,9 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Spl, Dictionary, Spell, SpellText,
-                       Test1, Test2, Test3, Test4
+  exposed-modules:     Spl, Dictionary,
+                       Spell.ByteString, Spell.Text, Spell.LazyText
+                       Test1, Test2, Test3, Test4, Test5
   build-depends:       base >= 4.7 && < 5, containers, regex-tdfa, bytestring, data-ordlist, unordered-containers, text
   default-language:    Haskell2010
 

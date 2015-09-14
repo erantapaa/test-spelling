@@ -15,5 +15,5 @@ import Control.Monad
 -- load dictionary and return access functions
 readDict = do
   words <- BS.readFile "words.count"
-  return (D.member words, D.lookupInt words)
+  return (D.member words, D.lookupInt words, BS.pack)
 

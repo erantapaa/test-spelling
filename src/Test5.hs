@@ -1,26 +1,27 @@
-module Test4
+module Test5
 where
 
 import qualified Data.HashMap.Strict as H
-import qualified Data.Text as T
-import qualified Data.Text.IO as T
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.IO as TL
+-- import qualified Data.Text as T
 import Data.List
 
 isAlpha ch = ('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z')
 
-wrds :: T.Text -> [ T.Text ]
+wrds :: TL.Text -> [ TL.Text ]
 wrds bs =
   let
-      (_, r1) = T.span (not . isAlpha) bs
-      (w, r2) = T.span isAlpha r1
-  in if T.null w then [] else T.toLower w : wrds r2
+      (_, r1) = TL.span (not . isAlpha) bs
+      (w, r2) = TL.span isAlpha r1
+  in if TL.null w then [] else TL.toLower w : wrds r2
 
 readDict = do
-  allwords <- fmap wrds $ T.readFile "big.txt"
+  allwords <- fmap wrds $ TL.readFile "big.txt"
   let h = foldl' add H.empty allwords
       add h w = let c = H.lookupDefault (0 :: Int)  w h
                 in  H.insert w (c+1) h
       member = \k -> H.member k h
       frequency = \k -> H.lookupDefault 0 k h
-  return (member, frequency, T.pack)
+  return (member, frequency, TL.pack)
 

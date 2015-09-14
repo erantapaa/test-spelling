@@ -2,7 +2,6 @@ module Test2
 where
 
 import qualified Data.HashMap.Strict as H
-import qualified Spell as Spell
 import qualified Data.ByteString.Char8 as BS
 import Data.List
 
@@ -16,5 +15,5 @@ readDict = do
   let h = foldl' (\h (k,v) -> H.insert k v h) H.empty entries
       member = \k -> H.member k h
       frequency = \k -> H.lookupDefault 0 k h
-  return (member, frequency)
+  return (member, frequency, BS.pack)
 
