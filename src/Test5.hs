@@ -6,6 +6,7 @@ import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Lazy.IO as TL
 -- import qualified Data.Text as T
 import Data.List
+import Debug.Trace
 
 isAlpha ch = ('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z')
 
@@ -24,4 +25,6 @@ readDict = do
       member = \k -> H.member k h
       frequency = \k -> H.lookupDefault 0 k h
   return (member, frequency, TL.pack)
+
+addints a b = trace "adding" (a+b)
 
