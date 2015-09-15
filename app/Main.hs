@@ -9,6 +9,7 @@ import qualified Spell.LazyText as SpellLT
 import qualified Test1 as T1
 import qualified Test2 as T2
 import qualified Test3 as T3
+import qualified Test3a as T3a
 import qualified Test4 as T4
 import qualified Test4b as T4b
 import qualified Test4c as T4c
@@ -28,6 +29,7 @@ main = do
     "1"  -> T1.readDict >>= test_bs
     "2"  -> T2.readDict >>= test_bs
     "3"  -> T3.readDict >>= test_bs
+    "3a" -> T3a.readDict >>= test_bs
     "4"  -> T4.readDict >>= test_txt
     "4b" -> T4b.readDict >>= test_txt
     "4c" -> T4c.readDict >>= test_txt
