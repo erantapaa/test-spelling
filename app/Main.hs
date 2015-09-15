@@ -13,6 +13,7 @@ import qualified Test4 as T4
 import qualified Test4b as T4b
 import qualified Test4c as T4c
 import qualified Test4d as T4d
+import qualified Test4e as T4e
 import qualified Test5 as T5
 import qualified Test6 as T6
 
@@ -31,6 +32,7 @@ main = do
     "4b" -> T4b.readDict >>= test_txt
     "4c" -> T4c.readDict >>= test_txt
     "4d" -> T4d.readDict >>= test_txt
+    "4e" -> T4e.readDict >>= test_txt
     "5"  -> T5.readDict >>= test_ltxt
     "6"  -> T6.readDict >>= test_txt
     _    -> error "unknown implementation"
