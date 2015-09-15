@@ -17,8 +17,9 @@ library
   hs-source-dirs:      src
   exposed-modules:     Spl, Dictionary,
                        Spell.ByteString, Spell.Text, Spell.LazyText
-                       Test1, Test2, Test3, Test4, Test4b, Test5, Test6
-  build-depends:       base >= 4.7 && < 5, containers, regex-tdfa, bytestring, data-ordlist, unordered-containers, text
+                       Test1, Test2, Test3, Test4, Test4b, Test4c, Test4d,
+                       Test5, Test6
+  build-depends:       base >= 4.7 && < 5, containers, regex-tdfa, bytestring, data-ordlist, unordered-containers, text, regex-tdfa-text
   default-language:    Haskell2010
 
 executable spelling-exe
